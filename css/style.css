@@ -169,17 +169,22 @@ section.contact-profile .icons-contact i {
 }
 
 
-
-
-
-
-
-
-.container section.main-box-top {
+.container section.main-box-text {
   height: calc(100% - 180px);
 }
 
 .container section.main-box-footer {
   height: 90px;
-  background-color: green;
+  background-color: #f3eeea;
+  padding: 20px;
+}
+
+section.main-box-footer .input-bar {
+  justify-content: space-around;
+  align-items: center;
+}
+
+section.main-box-footer .input-bar input {
+  width: 80%;
+  height: 50px;
 }
