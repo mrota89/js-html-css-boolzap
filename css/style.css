@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(0deg, rgba(218,219,213,1) 80%, rgba(0,151,136,1) 80%);
+}
+
+.flex {
+  display: flex;
+}
+
+.clearfix {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fl {
+  float: left;
+}
+
+ul {
+  list-style: none;
+}
+/* /classi utility */
+
+.container {
+  width: 80%;
+  height: calc(100vh - 40px);
+  max-width: 95%;
+  margin: 20px auto;
+  min-width: 950px;
+  background: green;
+}
+
+.container nav.sidebar {
+  width: 35%;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+nav.sidebar section.sidebar-top .user-profile {
+ height: 90px;
+ width: 100%;
+ justify-content: space-between;
+ padding: 20px;
+ background-color: #eaeaea;
+}
+
+section.sidebar-top .user-profile .user-profile-name {
+  width: 50%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+section.sidebar-top .user-profile .user-profile-name .image {
+  height: 50px;
+  width: 50px;
+  margin-right: 5px;
+}
+
+.user-profile .user-profile-name .image img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.user-profile .icons-profile {
+  width: 20%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-profile .icons-profile i {
+ color: grey;
+ font-size: 20px;
+}
+
+section.sidebar-top .notification {
+  height: 90px;
+  background-color: #8edafc;
+  padding: 20px;
+}
+
+.notification .bell {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 5px;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification .bell i {
+  font-size: 20px;
+  color: #8edafc;
+}
+
+section.sidebar-top .search-contact {
+  padding: 10px;
+  background-color: #fafafa;
+}
+
+section.sidebar-top .search-contact .input-box {
+  padding: 20px;
+  width: 100%;
+  height: 45px;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+}
+
+section.sidebar-top .search-contact .input-box input {
+  border: none;
+  width: 90%;
+}
+
+nav.sidebar section.sidebar-bottom {
+ background-color: brown;
+ height: 70%
+}
+
+.container .main-box {
+  width: calc(100% - 35%);
+  background-color: grey;
+  height: 100%;
+}
+
+.container section.main-box-top {
+  height: calc(100% - 90px);
+  background-color: red;
+}
+
+.container section.main-box-footer {
+  height: 90px;
+  background-color: green;
+}
