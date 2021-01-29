@@ -126,6 +126,29 @@ nav.sidebar section.sidebar-bottom {
  height: calc(100% - 245px);
 }
 
+section.sidebar-bottom .contacts-list {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+section.sidebar-bottom .contacts-list li {
+  padding: 5px;
+  margin: 5px;
+  height: 70px;
+}
+
+section.sidebar-bottom .contacts-list .contact-box-image {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f2f5;
+  margin-right: 5px;
+}
+
+.contacts-list .contact-box-image > img {
+  width: 100%;
+  border-radius: 50%;
+}
+
 .container .main-box {
   width: calc(100% - 35%);
   background-image: url('../images/mine.jpg');

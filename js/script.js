@@ -93,7 +93,9 @@ var app = new Vue({
    ]
  },
  methods: {
-
+  imageContact: function(index) {
+    return `images/avatar${this.contacts[index].avatar}.jpg`
+  }
  }
 });
 
