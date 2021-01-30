@@ -26,6 +26,64 @@ body {
 ul {
   list-style: none;
 }
+
+.massage-sent {
+  position: relative;
+    background: #dcf8c6;
+    color: #FFFFFF;
+    font-family: Arial;
+    font-size: 17px;
+    line-height: 100px;
+    box-shadow: 0px 2px 2px -1px #A3A3A3;
+    text-align: center;
+    width: 300px;
+    height: 100px;
+    border-radius: 17px;
+    padding: 2px;
+}
+
+.massage-sent:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    z-index: 1;
+    border-style: solid;
+    border-width: 27px 14px 0 0;
+    border-color: #dcf8c6 transparent transparent transparent;
+    top: 20%;
+    right: -14px;
+    margin-top: -13.5px;
+}
+
+.message-received {
+  position: relative;
+  background: #ffffff;
+  color: #FFFFFF;
+  font-family: Arial;
+  font-size: 17px;
+  line-height: 100px;
+  box-shadow: 0px 2px 2px -1px #A3A3A3;
+  text-align: center;
+  width: 300px;
+  height: 100px;
+  border-radius: 17px;
+  padding: 2px;
+}
+
+.message-received:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    z-index: 1;
+    border-style: solid;
+    border-width: 0 14px 27px 0;
+    border-color: transparent #ffffff transparent transparent;
+    top: 16%;
+    left: -14px;
+    margin-top: -13.5px;
+}
 /* /classi utility */
 
 .container {
@@ -38,11 +96,11 @@ ul {
 
 .container nav.sidebar {
   width: 35%;
-  height: calc(100vh - 40px);
+  height: 100%;
   border-right: solid black 2px;
 }
 
-
+/* sidebar top */
 nav.sidebar section.sidebar-top .user-profile {
  height: 90px;
  width: 100%;
@@ -120,41 +178,43 @@ section.sidebar-top .search-contact .input-box input {
   border: none;
   width: 90%;
 }
+/* /sidebar top */
 
+/* sidebar bottom */
 nav.sidebar section.sidebar-bottom {
  background-color: #fff;
  height: calc(100% - 245px);
-}
-
-section.sidebar-bottom .contacts-list {
-  justify-content: flex-start;
-  align-items: center;
+ overflow-y: auto;
+ min-height: 50px;
 }
 
 section.sidebar-bottom .contacts-list li {
   padding: 5px;
-  margin: 5px;
   height: 70px;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 section.sidebar-bottom .contacts-list .contact-box-image {
   width: 50px;
   height: 50px;
   background-color: #f0f2f5;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .contacts-list .contact-box-image > img {
   width: 100%;
   border-radius: 50%;
 }
+/* /sidebar bottom */
 
 .container .main-box {
   width: calc(100% - 35%);
   background-image: url('../images/mine.jpg');
-  height: calc(100vh - 40px);
+  height: 100%;
 }
 
+/* sezione profilo contatto chat */
 .main-box section.contact-profile {
  height: 90px;
  width: 100%;
@@ -190,12 +250,17 @@ section.contact-profile .icons-contact i {
  color: grey;
  font-size: 20px;
 }
+/* /sezione profilo contatto chat */
 
-
+/* sezione messaggi chat */
 .container section.main-box-text {
   height: calc(100% - 180px);
+  overflow-y: auto;
+  min-height: 50px;
 }
+/* /sezione messaggi chat */
 
+/* sezione input messaggio */
 .container section.main-box-footer {
   height: 90px;
   background-color: #f3eeea;
@@ -211,3 +276,4 @@ section.main-box-footer .input-bar input {
   width: 80%;
   height: 50px;
 }
+/* /sezione input messaggio */
