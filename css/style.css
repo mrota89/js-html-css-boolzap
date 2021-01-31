@@ -13,6 +13,10 @@ ul {
   list-style: none;
 }
 
+input {
+  outline: none;
+}
+
 .flex {
   display: flex;
 }
@@ -26,9 +30,10 @@ ul {
 }
 
 .box-profile-name-image {
-  width: 50%;
+  width: 60%;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
 }
 
 .image-profile {
@@ -51,6 +56,7 @@ ul {
 .inner-icons-profile{
  color: grey;
  font-size: 20px;
+ cursor: pointer;
 }
 
 .massage-sent {
@@ -136,8 +142,12 @@ section.sidebar-top .notification {
 
 section.sidebar-top .notification .active-notification li:nth-child(2) {
   font-size: 13px;
+}
+
+.active-notification li:nth-child(2):hover {
+  color:#558EA1;
   text-decoration: underline;
-  color: #558EA1;
+  cursor: pointer;
 }
 
 .notification .bell {
@@ -148,6 +158,7 @@ section.sidebar-top .notification .active-notification li:nth-child(2) {
   background-color: #fff;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .notification .bell i {
@@ -190,6 +201,12 @@ section.sidebar-bottom .contacts-list li {
   height: 70px;
   justify-content: flex-start;
   align-items: flex-start;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.contacts-list li:hover {
+  cursor: pointer;
+  background-color: #eaeaea;
 }
 
 /* /sidebar bottom */
@@ -230,10 +247,12 @@ section.main-box-footer .input-bar {
 section.main-box-footer .input-bar i {
   font-size: 30px;
   color: #6C7279;
+  cursor: pointer;
 }
 
 section.main-box-footer .input-bar input {
   width: 80%;
   height: 50px;
+  padding-left: 5px;
 }
 /* /sezione input messaggio */
