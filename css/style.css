@@ -59,69 +59,56 @@ input {
  cursor: pointer;
 }
 
-.massage-sent {
-  position: relative;
-    background: #dcf8c6;
-    color: #FFFFFF;
-    font-family: Arial;
-    font-size: 17px;
-    line-height: 100px;
-    box-shadow: 0px 2px 2px -1px #A3A3A3;
-    text-align: center;
-    width: 300px;
-    height: 100px;
-    border-radius: 17px;
-    padding: 2px;
-}
-
-.massage-sent:after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 0;
-    z-index: 1;
-    border-style: solid;
-    border-width: 27px 14px 0 0;
-    border-color: #dcf8c6 transparent transparent transparent;
-    top: 20%;
-    right: -14px;
-    margin-top: -13.5px;
+.massage-sent, .message-received {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 90%;
+  right: 15px;
+  background: #dcf8c6;
+  color: black;
+  font-size: 14px;
+  line-height: normal;
+  box-shadow: 0px 2px 2px -1px #A3A3A3;
+  text-align: left;
+  max-width: 250px;
+  height: max-content;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .message-received {
-  position: relative;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 75%;
+  left: 15px;
   background: #ffffff;
-  color: #FFFFFF;
-  font-family: Arial;
-  font-size: 17px;
-  line-height: 100px;
-  box-shadow: 0px 2px 2px -1px #A3A3A3;
-  text-align: center;
-  width: 300px;
-  height: 100px;
-  border-radius: 17px;
-  padding: 2px;
+}
+
+.massage-sent:after, .message-received:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-width: 27px 14px 0 0;
+  border-color: #dcf8c6 transparent transparent transparent;
+  top: 25%;
+  right: -12px;
+  margin-top: -13.5px;
 }
 
 .message-received:after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 0;
-    z-index: 1;
-    border-style: solid;
-    border-width: 0 14px 27px 0;
-    border-color: transparent #ffffff transparent transparent;
-    top: 16%;
-    left: -14px;
-    margin-top: -13.5px;
+  border-width: 0 14px 27px 0;
+  border-color: transparent #ffffff transparent transparent;
+  left: -12px;
 }
 /* /classi utility */
 
 .container {
   width: 80%;
   height: calc(100vh - 40px);
-  max-width: 95%;
+  max-height: 95%;
   margin: 20px auto;
   min-width: 950px;
 }
@@ -228,7 +215,8 @@ section.sidebar-bottom .contacts-list li {
 .container section.main-box-text {
   height: calc(100% - 180px);
   overflow-y: auto;
-  min-height: 50px;
+  min-height: 115px;
+  position: relative;
 }
 /* /sezione messaggi chat */
 
