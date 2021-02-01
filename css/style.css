@@ -62,7 +62,7 @@ input {
 .massage-sent, .message-received {
   position: absolute;
   transform: translateY(-50%);
-  top: 90%;
+  top: 50px;
   right: 15px;
   background: #dcf8c6;
   color: black;
@@ -79,7 +79,7 @@ input {
 .message-received {
   position: absolute;
   transform: translateY(-50%);
-  top: 75%;
+  top: 150px;
   left: 15px;
   background: #ffffff;
 }
@@ -195,7 +195,6 @@ section.sidebar-bottom .contacts-list li {
   cursor: pointer;
   background-color: #eaeaea;
 }
-
 /* /sidebar bottom */
 
 .container .main-box {
@@ -208,7 +207,6 @@ section.sidebar-bottom .contacts-list li {
 .main-box .box-icons-profile {
   width: 15%;
 }
-
 /* /sezione profilo contatto chat */
 
 /* sezione messaggi chat */
