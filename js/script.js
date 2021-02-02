@@ -2,15 +2,9 @@ var app = new Vue({
  el: '#app',
 
  data: {
-
+  messageTime: '',
   inputMessages: '',
   contactIDX: 0,
-  day: new Date().getDate(),
-  month: new Date().getMonth() + 1,
-  year: new Date().getFullYear(),
-  hours: new Date().getHours(),
-  minutes: new Date().getMinutes(),
-  seconds: new Date().getSeconds(),
   contacts: [
 
    	{
@@ -103,6 +97,7 @@ var app = new Vue({
  },
 
  methods: {
+   
     imageContact: function(index) {
       return `images/avatar${this.contacts[index].avatar}.jpg`
     },
@@ -123,22 +118,55 @@ var app = new Vue({
       }
     },
 
+    addZero: function(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    },
+
+    date: function() {
+      const date = new Date();
+      const day = this.addZero(date.getDate());
+      const month = this.addZero(date.getMonth() + 1);
+      const year = this.addZero(date.getFullYear());
+      const today = `${day}/${month}/${year}`;
+      return today
+    },
+
+    clock: function() {
+      const date = new Date();
+      const seconds = this.addZero(date.getSeconds());
+      const minutes = this.addZero(date.getMinutes());
+      const hours = this.addZero(date.getHours());
+      const time = `${hours}:${minutes}:${seconds}`;
+      return time
+    },
+
     submitMessage: function(contactIndex) {
       this.contacts[contactIndex].messages.push ({
         text: this.inputMessages,
         status:'sent',
-        date: `${this.day}/${this.month}/${this.year} ${this.hours}:${this.minutes}:${this.seconds}`
+        date: `${this.date()} ${this.clock()}`
       });
       this.inputMessages = '';
 
       setTimeout(function() {
-        const secondsDelay = new Date().getSeconds();
         this.contacts[contactIndex].messages.push ({
           text: 'ok',
           status:'received',
-          date: `${this.day}/${this.month}/${this.year} ${this.hours}:${this.minutes}:${secondsDelay}`
+          date: `${this.date()} ${this.clock()}`
         });
       }.bind(this), 1000)
+    },
+
+    lastAccess: function(contactIndex) {
+      const indexMex = this.contacts[contactIndex].messages.length - 1;
+      const lastMessage = this.contacts[contactIndex].messages[indexMex];
+      const messageTime = lastMessage.date;
+      const date = messageTime.slice(0, 10);
+      const time = messageTime.slice(11, 16);
+      return `${date} alle ${time}`
     }
   }
 });
