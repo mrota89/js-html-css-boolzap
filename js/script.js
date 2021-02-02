@@ -3,7 +3,14 @@ var app = new Vue({
 
  data: {
 
+  inputMessages: '',
   contactIDX: 0,
+  day: new Date().getDate(),
+  month: new Date().getMonth() + 1,
+  year: new Date().getFullYear(),
+  hours: new Date().getHours(),
+  minutes: new Date().getMinutes(),
+  seconds: new Date().getSeconds(),
   contacts: [
 
    	{
@@ -94,24 +101,46 @@ var app = new Vue({
    	}
    ]
  },
+
  methods: {
-  imageContact: function(index) {
-    return `images/avatar${this.contacts[index].avatar}.jpg`
-  },
-  statusMessage: function(contactIndex, mexIndex) {
-    return `${this.contacts[contactIndex].messages[mexIndex].status}`
-  },
-  changeContact: function(indexClickedContact) {
-    return this.contactIDX = indexClickedContact
-  },
-  selectedContact: function(indexSelectedContact) {
-    if(indexSelectedContact === this.contactIDX) {
-      return 'contact active flex'
-    } else {
-      return 'contact flex'
+    imageContact: function(index) {
+      return `images/avatar${this.contacts[index].avatar}.jpg`
+    },
+
+    statusMessage: function(contactIndex, mexIndex) {
+      return `${this.contacts[contactIndex].messages[mexIndex].status}`
+    },
+
+    changeContact: function(indexClickedContact) {
+      return this.contactIDX = indexClickedContact
+    },
+
+    selectedContact: function(indexSelectedContact) {
+      if(indexSelectedContact === this.contactIDX) {
+        return 'contact active flex'
+      } else {
+        return 'contact flex'
+      }
+    },
+
+    submitMessage: function(contactIndex) {
+      this.contacts[contactIndex].messages.push ({
+        text: this.inputMessages,
+        status:'sent',
+        date: `${this.day}/${this.month}/${this.year} ${this.hours}:${this.minutes}:${this.seconds}`
+      });
+      this.inputMessages = '';
+
+      setTimeout(function() {
+        const secondsDelay = new Date().getSeconds();
+        this.contacts[contactIndex].messages.push ({
+          text: 'ok',
+          status:'received',
+          date: `${this.day}/${this.month}/${this.year} ${this.hours}:${this.minutes}:${secondsDelay}`
+        });
+      }.bind(this), 1000)
     }
-  },
- }
+  }
 });
 
 Vue.config.devtools = true;
