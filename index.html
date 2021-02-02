@@ -61,7 +61,7 @@
 
         <section class="sidebar-bottom">
           <ul class="contacts-list">
-            <li class="contacts flex" v-for="(element, index) in contacts">
+            <li :class="selectedContact(index)" v-for="(element, index) in contacts" @click="changeContact(index)">
               <div class="image-profile">
                 <img class="inner-img-profile" :src="imageContact(index)" alt="">
               </div>
@@ -79,10 +79,10 @@
 
           <div class="box-profile-name-image flex">
             <div class="image-profile">
-              <img class="inner-img-profile" src="images/avatar_1.jpg" alt="">
+              <img class="inner-img-profile" :src="imageContact(contactIDX)" alt="">
             </div>
             <div class="">
-              <div>Michele</div>
+              <div>{{contacts[contactIDX].name}}</div>
               <div>Ultimo accesso oggi alle</div>
             </div>
           </div>
@@ -96,14 +96,12 @@
 
 
         <!-- sezione messaggi -->
-        <section class="main-box-text">
-          <div class="massage-sent">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </div>
-
-          <div class="message-received">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </div>
+        <section class="main-box-text clearfix">
+          <ul class= "clearfix">
+            <li v-for="(element, index) in contacts[contactIDX].messages" :class="statusMessage(contactIDX, index)">
+              {{element.text}}
+            </li>
+          </ul>
         </section>
         <!-- /sezione messaggi -->
 

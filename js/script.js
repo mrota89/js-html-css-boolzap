@@ -2,7 +2,9 @@ var app = new Vue({
  el: '#app',
 
  data: {
-     contacts: [
+
+  contactIDX: 0,
+  contacts: [
 
    	{
    		name: 'Michele',
@@ -95,7 +97,20 @@ var app = new Vue({
  methods: {
   imageContact: function(index) {
     return `images/avatar${this.contacts[index].avatar}.jpg`
-  }
+  },
+  statusMessage: function(contactIndex, mexIndex) {
+    return `${this.contacts[contactIndex].messages[mexIndex].status}`
+  },
+  changeContact: function(indexClickedContact) {
+    return this.contactIDX = indexClickedContact
+  },
+  selectedContact: function(indexSelectedContact) {
+    if(indexSelectedContact === this.contactIDX) {
+      return 'contact active flex'
+    } else {
+      return 'contact flex'
+    }
+  },
  }
 });
 

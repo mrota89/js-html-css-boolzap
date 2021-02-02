@@ -59,11 +59,11 @@ input {
  cursor: pointer;
 }
 
-.massage-sent, .message-received {
-  position: absolute;
-  transform: translateY(-50%);
-  top: 50px;
-  right: 15px;
+.sent, .received {
+  float: right;
+  clear: both;
+  top: 0;
+  margin: 5px;
   background: #dcf8c6;
   color: black;
   font-size: 14px;
@@ -72,37 +72,16 @@ input {
   text-align: left;
   max-width: 250px;
   height: max-content;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5px;
 }
 
-.message-received {
-  position: absolute;
-  transform: translateY(-50%);
-  top: 150px;
-  left: 15px;
+.received {
+  float: left;
+  clear: both;
   background: #ffffff;
 }
 
-.massage-sent:after, .message-received:after {
-  content: '';
-  position: absolute;
-  display: block;
-  width: 0;
-  z-index: 1;
-  border-style: solid;
-  border-width: 27px 14px 0 0;
-  border-color: #dcf8c6 transparent transparent transparent;
-  top: 25%;
-  right: -12px;
-  margin-top: -13.5px;
-}
-
-.message-received:after {
-  border-width: 0 14px 27px 0;
-  border-color: transparent #ffffff transparent transparent;
-  left: -12px;
-}
 /* /classi utility */
 
 .container {
@@ -183,7 +162,7 @@ nav.sidebar section.sidebar-bottom {
  min-height: 50px;
 }
 
-section.sidebar-bottom .contacts-list li {
+section.sidebar-bottom .contacts-list .contact {
   padding: 5px 15px;
   height: 70px;
   justify-content: flex-start;
@@ -191,7 +170,11 @@ section.sidebar-bottom .contacts-list li {
   border-bottom: 1px solid #eaeaea;
 }
 
-.contacts-list li:hover {
+.contacts-list .contact.active {
+  background-color: #eaeaea;
+}
+
+.contacts-list .contact:hover {
   cursor: pointer;
   background-color: #eaeaea;
 }
@@ -212,9 +195,15 @@ section.sidebar-bottom .contacts-list li {
 /* sezione messaggi chat */
 .container section.main-box-text {
   height: calc(100% - 180px);
+  width: 100%;
   overflow-y: auto;
   min-height: 115px;
   position: relative;
+}
+
+section.main-box-text ul {
+  width: 100%;
+  height: 100%;
 }
 /* /sezione messaggi chat */
 
