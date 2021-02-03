@@ -1,124 +1,126 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-    crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css">
-    <title>Boolzapp</title>
-  </head>
-  <body>
-    <div id="app" class="container flex">
 
-      <!-- sidebar -->
-      <nav class="sidebar">
-        <section class="sidebar-top">
-          <!-- sezione profilo utente -->
-          <div class="header-profile-info flex">
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+  <title>Boolzapp</title>
+</head>
 
-            <div class="box-profile-name-image flex">
-              <div class="image-profile">
-                <img class= "inner-img-profile" src="images/avatar_io.jpg" alt="">
-              </div>
-              <span>Nome Utente</span>
-            </div>
+<body>
+  <div id="app" class="container flex">
 
-            <div class="box-icons-profile flex">
-              <i class="inner-icons-profile fas fa-circle-notch"></i>
-              <i class="inner-icons-profile fas fa-comment-alt"></i>
-              <i class="inner-icons-profile fa fa-ellipsis-v"></i>
-            </div>
-          </div>
-          <!-- /sezione profilo utente -->
-
-          <!-- sezione silenzia notifiche -->
-          <div class="notification flex">
-            <div class="bell flex">
-              <i class="fa fa-bell-slash"></i>
-            </div>
-
-            <ul class="active-notification">
-              <li>Ricevi notifiche di nuovi messaggi</li>
-              <li>Attiva notifiche desktop</li>
-            </ul>
-
-          </div>
-          <!-- /sezione silenzia notifiche -->
-
-          <!-- cerca contatti -->
-          <div class="search-contact">
-            <div class="input-box flex">
-              <i class="fa fa-search" aria-hidden="true"></i>
-              <input v-model="searchContact" @keyup="searchFunction" placeholder="Cerca o inizia una nuova chat">
-            </div>
-          </div>
-          <!-- /cerca contatti -->
-        </section>
-
-
-        <section class="sidebar-bottom">
-          <ul class="contacts-list">
-            <li :class="selectedContact(index)" v-for="(element, index) in contacts" v-if="element.visible" @click="changeContact(index)">
-              <div class="image-profile">
-                <img class="inner-img-profile" :src="imageContact(index)" alt="">
-              </div>
-              <div class="contact-name">{{element.name}}</div>
-            </li>
-          </ul>
-        </section>
-      </nav>
-      <!-- /sidebar -->
-
-
-      <main class="main-box">
-
-        <section class="header-profile-info flex">
+    <!-- sidebar -->
+    <nav class="sidebar">
+      <section class="sidebar-top">
+        <!-- sezione profilo utente -->
+        <div class="header-profile-info flex">
 
           <div class="box-profile-name-image flex">
             <div class="image-profile">
-              <img class="inner-img-profile" :src="imageContact(contactIDX)" alt="">
+              <img class="inner-img-profile" src="images/avatar_io.jpg" alt="">
             </div>
-            <div class="">
-              <div>{{contacts[contactIDX].name}}</div>
-              <small>Ultimo accesso il {{lastAccess(contactIDX)}}</small>
-            </div>
+            <span>Nome Utente</span>
           </div>
 
           <div class="box-icons-profile flex">
-            <i class="inner-icons-profile fa fa-search" aria-hidden="true"></i>
-            <i class="inner-icons-profile fa fa-paperclip" aria-hidden="true"></i>
-            <i class="inner-icons-profile fa fa-ellipsis-v" aria-hidden="true"></i>
+            <i class="inner-icons-profile fas fa-circle-notch"></i>
+            <i class="inner-icons-profile fas fa-comment-alt"></i>
+            <i class="inner-icons-profile fa fa-ellipsis-v"></i>
           </div>
-        </section>
+        </div>
+        <!-- /sezione profilo utente -->
 
+        <!-- sezione silenzia notifiche -->
+        <div class="notification flex">
+          <div class="bell bg-white flex">
+            <i class="fa fa-bell-slash"></i>
+          </div>
 
-        <!-- sezione messaggi -->
-        <section class="main-box-text clearfix">
-          <ul class= "clearfix">
-            <li v-for="(element, index) in contacts[contactIDX].messages" :class="statusMessage(contactIDX, index)">
-              {{element.text}}
+          <ul class="active-notification">
+            <li>Ricevi notifiche di nuovi messaggi</li>
+            <li>
+              <small><a href="#">Attiva notifiche desktop</a></small>
             </li>
           </ul>
-        </section>
-        <!-- /sezione messaggi -->
 
-        <!-- barra di input messaggio -->
-        <section class="main-box-footer">
-          <div class="input-bar flex">
-            <i class="far fa-smile"></i>
-            <input v-model="inputMessages" @keyup.enter='submitMessage' placeholder="Scrivi un messaggio">
-            <i class="fa fa-microphone"></i>
+        </div>
+        <!-- /sezione silenzia notifiche -->
+
+        <!-- cerca contatti -->
+        <div class="search-contact">
+          <div class="input-box bg-white flex">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input v-model="searchContact" @keyup="searchContactFunction" placeholder="Cerca o inizia una nuova chat">
           </div>
-        </section>
-        <!-- /barra di input messaggio -->
+        </div>
+        <!-- /cerca contatti -->
+      </section>
 
-      </main>
 
-    </div>
+      <section class="sidebar-bottom bg-white">
+        <ul class="contacts-list">
+          <li :class="selectedContact(index)" @click="changeContact(index)" v-for="(element, index) in contacts" v-if="element.visible">
+            <div class="image-profile">
+              <img class="inner-img-profile" :src="imageContact(index)" alt="">
+            </div>
+            <div class="contact-name">{{element.name}}</div>
+          </li>
+        </ul>
+      </section>
+    </nav>
+    <!-- /sidebar -->
+
+
+    <main class="main-box">
+
+      <section class="header-profile-info flex">
+
+        <div class="box-profile-name-image flex">
+          <div class="image-profile">
+            <img class="inner-img-profile" :src="imageContact(contactIDX)" alt="">
+          </div>
+          <div class="">
+            <div>{{contacts[contactIDX].name}}</div>
+            <small>Ultimo accesso il {{lastAccess(contactIDX)}}</small>
+          </div>
+        </div>
+
+        <div class="box-icons-profile flex">
+          <i class="inner-icons-profile fa fa-search" aria-hidden="true"></i>
+          <i class="inner-icons-profile fa fa-paperclip" aria-hidden="true"></i>
+          <i class="inner-icons-profile fa fa-ellipsis-v" aria-hidden="true"></i>
+        </div>
+      </section>
+
+
+      <!-- sezione messaggi -->
+      <section class="main-box-text">
+        <ul>
+          <li v-for="(element, index) in contacts[contactIDX].messages" :class="statusMessageClass(index)">
+            {{element.text}}
+          </li>
+        </ul>
+      </section>
+      <!-- /sezione messaggi -->
+
+      <!-- barra di input messaggio -->
+      <section class="main-box-footer">
+        <div class="input-bar flex">
+          <i class="far fa-smile"></i>
+          <input v-model="inputMessages" @keyup.enter='submitMessage' placeholder="Scrivi un messaggio">
+          <i class="fa fa-microphone"></i>
+        </div>
+      </section>
+      <!-- /barra di input messaggio -->
+
+    </main>
+  </div>
 
   <script src="js/script.js" charset="utf-8"></script>
-  </body>
+</body>
+
 </html>

@@ -1,120 +1,127 @@
 var app = new Vue({
- el: '#app',
+  el: '#app',
 
- data: {
-  inputMessages: '',
-  searchContact: '',
-  contactIDX: 0,
-  contacts: [
+  data: {
+    inputMessages: '',
+    searchContact: '',
+    contactIDX: 0,
+    contacts: [
 
-   	{
-   		name: 'Michele',
-   		avatar: '_1',
-   		visible: true,
-   		messages: [
-   			{
-   				date: '10/01/2020 15:30:55',
-   				text: 'Hai portato a spasso il cane?',
-   				status: 'sent'
-   			},
-   			{
-   				date: '10/01/2020 15:50:00',
-   				text: 'Ricordati di dargli da mangiare',
-   				status: 'sent'
-   			},
-   			{
-   				date: '10/01/2020 16:15:22',
-   				text: 'Tutto fatto!',
-   				status: 'received'
-   			}
-   		],
-   	},
+      {
+        name: 'Michele',
+        avatar: '_1',
+        visible: true,
+        messages: [{
+            date: '10/01/2020 15:30:55',
+            text: 'Hai portato a spasso il cane?',
+            status: 'sent'
+          },
+          {
+            date: '10/01/2020 15:50:00',
+            text: 'Ricordati di dargli da mangiare',
+            status: 'sent'
+          },
+          {
+            date: '10/01/2020 16:15:22',
+            text: 'Tutto fatto!',
+            status: 'received'
+          }
+        ],
+      },
 
-   	{
-   		name: 'Fabio',
-   		avatar: '_2',
-   		visible: true,
-   		messages: [
-   			{
-   				date: '20/03/2020 16:30:00',
-   				text: 'Ciao come stai?',
-   				status: 'sent'
-   			},
-   			{
-   				date: '20/03/2020 16:30:55',
-   				text: 'Bene grazie! Stasera ci vediamo?',
-   				status: 'received'
-   			},
-   			{
-   				date: '20/03/2020 16:35:00',
-   				text: 'Mi piacerebbe ma devo andare a fare la spesa.',
-   				status: 'sent'
-   			}
-   		],
-   	},
+      {
+        name: 'Fabio',
+        avatar: '_2',
+        visible: true,
+        messages: [{
+            date: '20/03/2020 16:30:00',
+            text: 'Ciao come stai?',
+            status: 'sent'
+          },
+          {
+            date: '20/03/2020 16:30:55',
+            text: 'Bene grazie! Stasera ci vediamo?',
+            status: 'received'
+          },
+          {
+            date: '20/03/2020 16:35:00',
+            text: 'Mi piacerebbe ma devo andare a fare la spesa.',
+            status: 'sent'
+          }
+        ],
+      },
 
-   	{
-   		name: 'Samuele',
-   		avatar: '_3',
-   		visible: true,
-   		messages: [
-   			{
-   				date: '28/03/2020 10:10:40',
-   				text: 'La Marianna va in campagna',
-   				status: 'received'
-   			},
-   			{
-   				date: '28/03/2020 10:20:10',
-   				text: 'Sicuro di non aver sbagliato chat?',
-   				status: 'sent'
-   			},
-   			{
-   				date: '28/03/2020 16:15:22',
-   				text: 'Ah scusa!',
-   				status: 'received'
-   			}
-   		],
-   	},
+      {
+        name: 'Samuele',
+        avatar: '_3',
+        visible: true,
+        messages: [{
+            date: '28/03/2020 10:10:40',
+            text: 'La Marianna va in campagna',
+            status: 'received'
+          },
+          {
+            date: '28/03/2020 10:20:10',
+            text: 'Sicuro di non aver sbagliato chat?',
+            status: 'sent'
+          },
+          {
+            date: '28/03/2020 16:15:22',
+            text: 'Ah scusa!',
+            status: 'received'
+          }
+        ],
+      },
 
-   	{
-   		name: 'Luisa',
-   		avatar: '_4',
-   		visible: true,
-   		messages: [
-   			{
-   				date: '10/01/2020 15:30:55',
-   				text: 'Lo sai che ha aperto una nuova pizzeria?',
-   				status: 'sent'
-   			},
-   			{
-   				date: '10/01/2020 15:50:00',
-   				text: 'Si, ma preferirei andare al cinema',
-   				status: 'received'
-   			}
-   		],
-   	}
-   ]
- },
+      {
+        name: 'Luisa',
+        avatar: '_4',
+        visible: true,
+        messages: [{
+            date: '10/01/2020 15:30:55',
+            text: 'Lo sai che ha aperto una nuova pizzeria?',
+            status: 'sent'
+          },
+          {
+            date: '10/01/2020 15:50:00',
+            text: 'Si, ma preferirei andare al cinema',
+            status: 'received'
+          }
+        ],
+      }
+    ]
+  },
 
- methods: {
+  methods: {
 
+    //ritorna stringa del percorso file immagine
     imageContact: function(index) {
-      return `images/avatar${this.contacts[index].avatar}.jpg`
+      const profileImage = this.contacts[index].avatar;
+      const imageString = `images/avatar${profileImage}.jpg`;
+      return imageString;
     },
 
-    statusMessage: function(contactIndex, mexIndex) {
-      return `${this.contacts[contactIndex].messages[mexIndex].status}`
+    //ritorna stringa con classe CSS per colore messaggo inviato/ricevuto
+    statusMessageClass: function(messageIndex) {
+      const currentMessage = this.contacts[this.contactIDX].messages;
+      const statusMessage = currentMessage[messageIndex].status;
+      const classString = `${statusMessage}`;
+      return classString;
     },
 
+    //ritorna il valore di contactIDX uguale a quello del contatto cliccato (lista contatti)
     changeContact: function(indexClickedContact) {
-      return this.contactIDX = indexClickedContact
+      this.contactIDX = indexClickedContact;
     },
 
+    //ritorna una stringa di classi CSS diversa a seconda se il contatto è selezionato o meno
     selectedContact: function(indexSelectedContact) {
-      if(indexSelectedContact === this.contactIDX) {
-        return 'contact active flex'
+      const selected = 'contact active flex';
+      const notSelected = 'contact flex';
+      if (indexSelectedContact === this.contactIDX) {
+        return selected;
       } else {
-        return 'contact flex'
+        return notSelected;
       }
     },
 
@@ -143,6 +150,7 @@ var app = new Vue({
       return time
     },
 
+    //per renderizzare data e ora di ultimo accesso del contatto
     renderDate: function(timeToRender) {
       let date = timeToRender.slice(0, 10);
       let time = timeToRender.slice(11, 16);
@@ -150,18 +158,39 @@ var app = new Vue({
       return lastAccessTime;
     },
 
+    //l'ultimo accesso del contatto si basa sulla data dell'ultimo messaggio "inviato" dallo stesso
+    lastAccess: function(contactIndex) {
+      const messages = this.contacts[contactIndex].messages
+      let lastMessageDate;
+
+      //filtro in un array i messaggi con status === received
+      const receivedMessage = messages.filter((element) => {
+        return element.status === 'received';
+      });
+
+      /*per ogni messaggio di receivedMessage estrapolo la proprietà date,
+      e assegno a lastMessageDate solo la proprietà date dell'ultimo messaggio dell'array*/
+      receivedMessage.forEach((element, index) => {
+        const { date } = element;
+        if (index === receivedMessage.length - 1) {
+          lastMessageDate = element.date;
+        }
+      })
+      return this.renderDate(lastMessageDate);
+    },
+
     botReply: function() {
-       this.contacts[this.contactIDX].messages.push ({
+      this.contacts[this.contactIDX].messages.push({
         text: 'ok',
-        status:'received',
+        status: 'received',
         date: `${this.currentDate()} ${this.currentClock()}`
       })
     },
 
     submitMessage: function() {
-      this.contacts[this.contactIDX].messages.push ({
+      this.contacts[this.contactIDX].messages.push({
         text: this.inputMessages,
-        status:'sent',
+        status: 'sent',
         date: `${this.currentDate()} ${this.currentDate()}`
       });
       this.inputMessages = '';
@@ -172,37 +201,21 @@ var app = new Vue({
       }, 1000)
     },
 
-    //l'ultimo accesso del contatto si basa sulla data dell'ultimo messaggio inviato dallo stesso
-    lastAccess: function(contactIndex) {
-      const messages = this.contacts[contactIndex].messages
-      let lastMessageDate;
-
-      const receivedMessage = messages.filter ((element) => {
-        return element.status === 'received'
-      });
-
-      receivedMessage.forEach((element, index) => {
-        let {date} = element;
-        if(index === receivedMessage.length - 1) {
-          return lastMessageDate = element.date;
-        }
-      })
-      return this.renderDate(lastMessageDate);
-    },
-
-    searchFunction: function() {
+    /*sostituisce il booleano della proprietà visible del contatto
+    a seconda del valore assunto dalla variabile flag*/
+    searchContactFunction: function() {
       let flag = false;
       this.contacts.forEach((contact) => {
-        let {name, visible} = contact;
+        const { name, visible } = contact;
         flag = name.toLowerCase().startsWith(this.searchContact.toLowerCase());
-        if(flag) {
+        if (flag) {
           contact.visible = true;
         } else {
           contact.visible = false;
         }
       })
     }
-  }//end methods
-});// end vue app
+  } //end methods
+}); // end vue app
 
 Vue.config.devtools = true;
