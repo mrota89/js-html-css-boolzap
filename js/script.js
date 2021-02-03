@@ -4,7 +4,9 @@ var app = new Vue({
  data: {
   messageTime: '',
   inputMessages: '',
+  searchContact: '',
   contactIDX: 0,
+  searchControl: false,
   contacts: [
 
    	{
@@ -97,7 +99,7 @@ var app = new Vue({
  },
 
  methods: {
-   
+
     imageContact: function(index) {
       return `images/avatar${this.contacts[index].avatar}.jpg`
     },
@@ -167,6 +169,18 @@ var app = new Vue({
       const date = messageTime.slice(0, 10);
       const time = messageTime.slice(11, 16);
       return `${date} alle ${time}`
+    },
+
+    searchFunction: function() {
+      this.contacts.forEach((element) => {
+        let {name, visible} = element;
+        this.searchControl = name.toLowerCase().startsWith(this.searchContact);
+        if(this.searchControl) {
+          element.visible = true;
+        } else {
+          element.visible = false;
+        }
+      })
     }
   }
 });

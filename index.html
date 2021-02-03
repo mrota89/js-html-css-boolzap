@@ -52,7 +52,7 @@
           <div class="search-contact">
             <div class="input-box flex">
               <i class="fa fa-search" aria-hidden="true"></i>
-              <input placeholder="Cerca o inizia una nuova chat">
+              <input v-model="searchContact" @keyup="searchFunction" placeholder="Cerca o inizia una nuova chat">
             </div>
           </div>
           <!-- /cerca contatti -->
@@ -61,7 +61,7 @@
 
         <section class="sidebar-bottom">
           <ul class="contacts-list">
-            <li :class="selectedContact(index)" v-for="(element, index) in contacts" @click="changeContact(index)">
+            <li :class="selectedContact(index)" v-for="(element, index) in contacts" v-if="element.visible" @click="changeContact(index)">
               <div class="image-profile">
                 <img class="inner-img-profile" :src="imageContact(index)" alt="">
               </div>
