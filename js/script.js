@@ -2,11 +2,9 @@ var app = new Vue({
  el: '#app',
 
  data: {
-  messageTime: '',
   inputMessages: '',
   searchContact: '',
   contactIDX: 0,
-  searchControl: false,
   contacts: [
 
    	{
@@ -127,62 +125,84 @@ var app = new Vue({
       return i;
     },
 
-    date: function() {
+    currentDate: function() {
       const date = new Date();
-      const day = this.addZero(date.getDate());
-      const month = this.addZero(date.getMonth() + 1);
-      const year = this.addZero(date.getFullYear());
-      const today = `${day}/${month}/${year}`;
+      let day = this.addZero(date.getDate());
+      let month = this.addZero(date.getMonth() + 1);
+      let year = date.getFullYear();
+      let today = `${day}/${month}/${year}`;
       return today
     },
 
-    clock: function() {
+    currentClock: function() {
       const date = new Date();
-      const seconds = this.addZero(date.getSeconds());
-      const minutes = this.addZero(date.getMinutes());
-      const hours = this.addZero(date.getHours());
-      const time = `${hours}:${minutes}:${seconds}`;
+      let seconds = this.addZero(date.getSeconds());
+      let minutes = this.addZero(date.getMinutes());
+      let hours = this.addZero(date.getHours());
+      let time = `${hours}:${minutes}:${seconds}`;
       return time
     },
 
-    submitMessage: function(contactIndex) {
-      this.contacts[contactIndex].messages.push ({
+    renderDate: function(timeToRender) {
+      let date = timeToRender.slice(0, 10);
+      let time = timeToRender.slice(11, 16);
+      let lastAccessTime = `${date} alle ${time}`;
+      return lastAccessTime;
+    },
+
+    botReply: function() {
+       this.contacts[this.contactIDX].messages.push ({
+        text: 'ok',
+        status:'received',
+        date: `${this.currentDate()} ${this.currentClock()}`
+      })
+    },
+
+    submitMessage: function() {
+      this.contacts[this.contactIDX].messages.push ({
         text: this.inputMessages,
         status:'sent',
-        date: `${this.date()} ${this.clock()}`
+        date: `${this.currentDate()} ${this.currentDate()}`
       });
       this.inputMessages = '';
 
+      let that = this;
       setTimeout(function() {
-        this.contacts[contactIndex].messages.push ({
-          text: 'ok',
-          status:'received',
-          date: `${this.date()} ${this.clock()}`
-        });
-      }.bind(this), 1000)
+        that.botReply()
+      }, 1000)
     },
 
+    //l'ultimo accesso del contatto si basa sulla data dell'ultimo messaggio inviato dallo stesso
     lastAccess: function(contactIndex) {
-      const indexMex = this.contacts[contactIndex].messages.length - 1;
-      const lastMessage = this.contacts[contactIndex].messages[indexMex];
-      const messageTime = lastMessage.date;
-      const date = messageTime.slice(0, 10);
-      const time = messageTime.slice(11, 16);
-      return `${date} alle ${time}`
+      const messages = this.contacts[contactIndex].messages
+      let lastMessageDate;
+
+      const receivedMessage = messages.filter ((element) => {
+        return element.status === 'received'
+      });
+
+      receivedMessage.forEach((element, index) => {
+        let {date} = element;
+        if(index === receivedMessage.length - 1) {
+          return lastMessageDate = element.date;
+        }
+      })
+      return this.renderDate(lastMessageDate);
     },
 
     searchFunction: function() {
-      this.contacts.forEach((element) => {
-        let {name, visible} = element;
-        this.searchControl = name.toLowerCase().startsWith(this.searchContact);
-        if(this.searchControl) {
-          element.visible = true;
+      let flag = false;
+      this.contacts.forEach((contact) => {
+        let {name, visible} = contact;
+        flag = name.toLowerCase().startsWith(this.searchContact.toLowerCase());
+        if(flag) {
+          contact.visible = true;
         } else {
-          element.visible = false;
+          contact.visible = false;
         }
       })
     }
-  }
-});
+  }//end methods
+});// end vue app
 
 Vue.config.devtools = true;
