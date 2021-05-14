@@ -196,10 +196,39 @@ section.sidebar-bottom .contacts-list .contact {
   min-height: 115px;
 }
 
-section.main-box-text ul {
+section.main-box-text .messages-container {
   width: 100%;
   height: 100%;
 }
+
+section.main-box-text .messages-container .options-button {
+  display: none;
+  color: #6c7279;
+}
+
+section.main-box-text .messages-container li {
+  position: relative;
+}
+
+section.main-box-text .messages-container li:hover .options-button{
+  display: inline-block;
+}
+
+.messages-container .options-container {
+  width: 120px;
+  padding: 10px;
+  position: absolute;
+  transform: translate(0 , -50%);
+  top: 170%;
+  left: 30%;
+  z-index: 2;
+  font-size: 12px;
+}
+
+.messages-container .options-container li {
+  margin-top: 10px;
+}
+
 /* /sezione messaggi chat */
 
 /* sezione input messaggio */

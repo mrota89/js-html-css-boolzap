@@ -5,6 +5,8 @@ var app = new Vue({
     inputMessages: '',
     searchContact: '',
     contactIDX: 0,
+    messageIDX: -1,
+    toggleModal: false,
     contacts: [
 
       {
@@ -74,7 +76,7 @@ var app = new Vue({
       },
 
       {
-        name: 'Luisa',
+        name: 'Luis',
         avatar: '_4',
         visible: true,
         messages: [{
@@ -111,7 +113,20 @@ var app = new Vue({
 
     //ritorna il valore di contactIDX uguale a quello del contatto cliccato (lista contatti)
     changeContact: function(indexClickedContact) {
+      this.toggleModal = false;
       this.contactIDX = indexClickedContact;
+    },
+
+    changeMessage: function(indexClickedMessage) {
+      this.messageIDX = indexClickedMessage;
+
+      if(indexClickedMessage === this.messageIDX && this.toggleModal === false) {
+        return this.toggleModal = true;
+      } else if (indexClickedMessage === this.messageIDX && this.toggleModal === true){
+        return this.toggleModal = false;
+      } else {
+        return this.toggleModal = false;
+      }
     },
 
     //ritorna una stringa di classi CSS diversa a seconda se il contatto è selezionato o meno
@@ -124,6 +139,17 @@ var app = new Vue({
         return notSelected;
       }
     },
+
+    // messageClicked: function(indexSelectedMessage) {
+    //
+    //   if(indexSelectedMessage === this.messageIDX && this.toggleModal === false) {
+    //     return this.toggleModal = true;
+    //   } else if (indexSelectedMessage === this.messageIDX && this.toggleModal === true){
+    //     return this.toggleModal = false;
+    //   } else {
+    //     return this.toggleModal = false;
+    //   }
+    // },
 
     addZero: function(i) {
       if (i < 10) {

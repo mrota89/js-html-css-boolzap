@@ -23,7 +23,7 @@
             <div class="image-profile">
               <img class="inner-img-profile" src="images/avatar_io.jpg" alt="">
             </div>
-            <span>Nome Utente</span>
+            <span>Piera</span>
           </div>
 
           <div class="box-icons flex">
@@ -99,9 +99,16 @@
 
       <!-- sezione messaggi -->
       <section class="main-box-text">
-        <ul>
+        <ul class="messages-container">
           <li v-for="(element, index) in contacts[contactIDX].messages" :class="statusMessageClass(index)">
             {{element.text}}
+            <span class="options-button" @click="changeMessage(index)">
+              <i class="fas fa-angle-down"></i>
+            </span>
+            <ul v-if="toggleModal && index === messageIDX" class="options-container bg-white">
+              <li>Message info</li>
+              <li>Delete Message</li>
+            </ul>
           </li>
         </ul>
       </section>
